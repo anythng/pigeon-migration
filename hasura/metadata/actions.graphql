@@ -1,9 +1,4 @@
 type Mutation {
-  CreateTestMetric : CreateTestMetricOutput
-}
-
-
-type Mutation {
   login (
     identifier: String!
     password: String!
@@ -12,6 +7,11 @@ type Mutation {
 
 
 
+
+input SampleInput {
+  username : String!
+  password : String!
+}
 
 type GameDerivedOutput {
   id : Int!
@@ -24,5 +24,9 @@ type CreateTestMetricOutput {
 type LoginResponse {
   accessToken : String!
   id : Int!
+}
+
+type SampleOutput {
+  accessToken : String!
 }
 

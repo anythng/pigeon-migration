@@ -1,8 +1,4 @@
 actions:
-- name: CreateTestMetric
-  definition:
-    kind: synchronous
-    handler: http://192.168.0.58:3000/CreateTestMetric
 - name: login
   definition:
     kind: synchronous
@@ -11,9 +7,11 @@ actions:
   - role: anonymous
 custom_types:
   enums: []
-  input_objects: []
+  input_objects:
+  - name: SampleInput
   objects:
   - name: GameDerivedOutput
   - name: CreateTestMetricOutput
   - name: LoginResponse
+  - name: SampleOutput
   scalars: []
