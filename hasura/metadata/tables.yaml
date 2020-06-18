@@ -1,0 +1,408 @@
+- table:
+    schema: public
+    name: authenticated
+- table:
+    schema: public
+    name: contact
+  object_relationships:
+  - name: contact
+    using:
+      foreign_key_constraint_on: contact_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: cuisine
+  array_relationships:
+  - name: game_cuisines
+    using:
+      foreign_key_constraint_on:
+        column: cuisine_id
+        table:
+          schema: public
+          name: game_cuisine
+  - name: restaurant_cuisines
+    using:
+      foreign_key_constraint_on:
+        column: cuisine_id
+        table:
+          schema: public
+          name: restaurant_cuisine
+- table:
+    schema: public
+    name: favorite_item_entity
+- table:
+    schema: public
+    name: food_item
+  array_relationships:
+  - name: food_item_media
+    using:
+      foreign_key_constraint_on:
+        column: food_item_id
+        table:
+          schema: public
+          name: food_item_media
+  - name: restaurant_items
+    using:
+      foreign_key_constraint_on:
+        column: food_item_id
+        table:
+          schema: public
+          name: restaurant_item
+- table:
+    schema: public
+    name: food_item_media
+  object_relationships:
+  - name: food_item
+    using:
+      foreign_key_constraint_on: food_item_id
+  - name: media_author
+    using:
+      foreign_key_constraint_on: author_id
+  array_relationships:
+  - name: game_choices
+    using:
+      foreign_key_constraint_on:
+        column: chosen_media_id
+        table:
+          schema: public
+          name: game_choice
+- table:
+    schema: public
+    name: game
+  object_relationships:
+  - name: game_creator
+    using:
+      foreign_key_constraint_on: game_creator_id
+  - name: winning_restaurant
+    using:
+      foreign_key_constraint_on: winning_restaurant_id
+  array_relationships:
+  - name: game_choices
+    using:
+      foreign_key_constraint_on:
+        column: game_id
+        table:
+          schema: public
+          name: game_choice
+  - name: game_cuisines
+    using:
+      foreign_key_constraint_on:
+        column: game_id
+        table:
+          schema: public
+          name: game_cuisine
+  - name: game_players
+    using:
+      foreign_key_constraint_on:
+        column: game_id
+        table:
+          schema: public
+          name: game_player
+- table:
+    schema: public
+    name: game_choice
+  object_relationships:
+  - name: food_item_medium
+    using:
+      foreign_key_constraint_on: chosen_media_id
+  - name: game
+    using:
+      foreign_key_constraint_on: game_id
+  - name: game_player
+    using:
+      foreign_key_constraint_on: player_id
+  - name: restaurant
+    using:
+      foreign_key_constraint_on: restaurant_id
+  - name: restaurant_item
+    using:
+      foreign_key_constraint_on: restaurant_item_id
+- table:
+    schema: public
+    name: game_cuisine
+  object_relationships:
+  - name: cuisine
+    using:
+      foreign_key_constraint_on: cuisine_id
+  - name: game
+    using:
+      foreign_key_constraint_on: game_id
+- table:
+    schema: public
+    name: game_player
+  object_relationships:
+  - name: game
+    using:
+      foreign_key_constraint_on: game_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: game_choices
+    using:
+      foreign_key_constraint_on:
+        column: player_id
+        table:
+          schema: public
+          name: game_choice
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - game_id
+      - user_id
+      filter: {}
+- table:
+    schema: public
+    name: log
+- table:
+    schema: public
+    name: media_author
+  array_relationships:
+  - name: food_item_media
+    using:
+      foreign_key_constraint_on:
+        column: author_id
+        table:
+          schema: public
+          name: food_item_media
+- table:
+    schema: public
+    name: menu
+  array_relationships:
+  - name: restaurant_items
+    using:
+      foreign_key_constraint_on:
+        column: menu_id
+        table:
+          schema: public
+          name: restaurant_item
+- table:
+    schema: public
+    name: menu_section
+  array_relationships:
+  - name: restaurant_items
+    using:
+      foreign_key_constraint_on:
+        column: menu_section_id
+        table:
+          schema: public
+          name: restaurant_item
+- table:
+    schema: public
+    name: metric
+- table:
+    schema: public
+    name: restaurant
+  object_relationships:
+  - name: restaurant_chain
+    using:
+      foreign_key_constraint_on: chain_id
+  - name: restaurants_visited_entity
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: restaurants_visited_entity
+        column_mapping:
+          id: restaurantId
+  array_relationships:
+  - name: game_choices
+    using:
+      foreign_key_constraint_on:
+        column: restaurant_id
+        table:
+          schema: public
+          name: game_choice
+  - name: games
+    using:
+      foreign_key_constraint_on:
+        column: winning_restaurant_id
+        table:
+          schema: public
+          name: game
+  - name: restaurant_cuisines
+    using:
+      foreign_key_constraint_on:
+        column: restaurant_id
+        table:
+          schema: public
+          name: restaurant_cuisine
+  - name: restaurant_items
+    using:
+      foreign_key_constraint_on:
+        column: restaurant_id
+        table:
+          schema: public
+          name: restaurant_item
+- table:
+    schema: public
+    name: restaurant_chain
+  array_relationships:
+  - name: restaurants
+    using:
+      foreign_key_constraint_on:
+        column: chain_id
+        table:
+          schema: public
+          name: restaurant
+- table:
+    schema: public
+    name: restaurant_cuisine
+  object_relationships:
+  - name: cuisine
+    using:
+      foreign_key_constraint_on: cuisine_id
+  - name: restaurant
+    using:
+      foreign_key_constraint_on: restaurant_id
+- table:
+    schema: public
+    name: restaurant_item
+  object_relationships:
+  - name: food_item
+    using:
+      foreign_key_constraint_on: food_item_id
+  - name: menu
+    using:
+      foreign_key_constraint_on: menu_id
+  - name: menu_section
+    using:
+      foreign_key_constraint_on: menu_section_id
+  - name: restaurant
+    using:
+      foreign_key_constraint_on: restaurant_id
+  array_relationships:
+  - name: game_choices
+    using:
+      foreign_key_constraint_on:
+        column: restaurant_item_id
+        table:
+          schema: public
+          name: game_choice
+- table:
+    schema: public
+    name: restaurants_visited_entity
+  object_relationships:
+  - name: restaurant
+    using:
+      foreign_key_constraint_on: restaurantId
+- table:
+    schema: public
+    name: test_table
+- table:
+    schema: public
+    name: user
+  array_relationships:
+  - name: contacts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: contact
+  - name: contactsByContactId
+    using:
+      foreign_key_constraint_on:
+        column: contact_id
+        table:
+          schema: public
+          name: contact
+  - name: game_players
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: game_player
+  - name: games
+    using:
+      foreign_key_constraint_on:
+        column: game_creator_id
+        table:
+          schema: public
+          name: game
+  - name: user_devices
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: user_device
+  insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+      - email
+      - first_name
+      - last_name
+      - password
+      - phone_number
+      - username
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - username
+      - password
+      - phone_number
+      - email
+      - first_name
+      - last_name
+      - diet
+      - chicken
+      - pork
+      - turkey
+      - beef
+      - gluten
+      - exotic
+      - fish
+      - shellfish
+      - vegetables
+      - animal_products
+      - vegan
+      - vegetarian
+      - created_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - animal_products
+      - beef
+      - chicken
+      - exotic
+      - fish
+      - gluten
+      - pork
+      - shellfish
+      - turkey
+      - vegan
+      - vegetables
+      - vegetarian
+      - id
+      - created_at
+      - diet
+      - email
+      - first_name
+      - last_name
+      - password
+      - phone_number
+      - username
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+- table:
+    schema: public
+    name: user_device
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id

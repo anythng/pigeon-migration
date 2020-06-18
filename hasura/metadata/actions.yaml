@@ -1,0 +1,19 @@
+actions:
+- name: CreateTestMetric
+  definition:
+    kind: synchronous
+    handler: http://192.168.0.58:3000/CreateTestMetric
+- name: login
+  definition:
+    kind: synchronous
+    handler: http://192.168.0.58:5003/anythng-a5964/us-central1/services/login
+  permissions:
+  - role: anonymous
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: GameDerivedOutput
+  - name: CreateTestMetricOutput
+  - name: LoginResponse
+  scalars: []

@@ -1,0 +1,28 @@
+type Mutation {
+  CreateTestMetric : CreateTestMetricOutput
+}
+
+
+type Mutation {
+  login (
+    identifier: String!
+    password: String!
+  ): LoginResponse
+}
+
+
+
+
+type GameDerivedOutput {
+  id : Int!
+}
+
+type CreateTestMetricOutput {
+  id : Int!
+}
+
+type LoginResponse {
+  accessToken : String!
+  id : Int!
+}
+
