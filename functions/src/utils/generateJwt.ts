@@ -2,7 +2,7 @@ import { sign, SignOptions } from 'jsonwebtoken';
 
 export const generateJwt = (
   sub: string,
-  defaultRole: string,
+  defaultRole: 'user' | 'admin',
   otherOptions?: SignOptions,
 ): string =>
   sign(
@@ -25,6 +25,7 @@ export const generateJwt = (
         'x-hasura-default-role': defaultRole,
         'x-hasura-user-id': sub,
       },
+      expiresIn: '30d',
       ...otherOptions,
     },
     // TODO: Move to env var

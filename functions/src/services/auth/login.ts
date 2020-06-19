@@ -39,6 +39,7 @@ interface Credentials {
 
 router
   .route('/login')
+  .get((req, res) => res.send('login'))
   .post(async (req, res) => {
     const { identifier, password }: loginArgs = req.body.input;
 
@@ -70,5 +71,4 @@ router
       // TODO: Change role
       accessToken: generateJwt(String(creds.id), 'user'),
     });
-  })
-  .get((req, res) => res.send('login'));
+  });
