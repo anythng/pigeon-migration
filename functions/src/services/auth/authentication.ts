@@ -1,10 +1,9 @@
 import bcrypt from 'bcrypt';
-import express from 'express';
+import { Router } from 'express';
 
-import { execute } from './utils/execute';
-import { generateJwt } from './utils/generateJwt';
+import { execute, generateJwt } from '@utils';
 
-export const authApp = express();
+export const router = Router();
 
 interface loginArgs {
   identifier: string;
@@ -37,34 +36,39 @@ interface Credentials {
   id: number;
   password: string;
 }
-authApp.post('/login', async (req, res) => {
-  const { identifier, password }: loginArgs = req.body.input;
 
-  const result: GetCredentialsData = await execute<GetCredentialsArgs>(
-    CREDENTIALS_QUERY,
-    { identifier },
-  );
-  const { user } = result;
-  // TODO: Handle error
-  if (user.length === 0) {
-    return res.status(401).json({
-      message: 'Incorrect credentials',
+router
+  .route('/login')
+  .post(async (req, res) => {
+    const { identifier, password }: loginArgs = req.body.input;
+
+    const result: GetCredentialsData = await execute<GetCredentialsArgs>(
+      CREDENTIALS_QUERY,
+      { identifier },
+    );
+    const { user } = result;
+    // TODO: Handle error
+
+    if (user.length === 0) {
+      return res.status(401).json({
+        message: 'Incorrect credentials',
+      });
+    }
+
+    const creds = user[0];
+
+    const isPasswordCorrect = await bcrypt.compare(password, creds.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({
+        message: 'Incorrect password',
+      });
+    }
+
+    return res.json({
+      id: creds.id,
+      // TODO: Change role
+      accessToken: generateJwt(String(creds.id), 'user'),
     });
-  }
-
-  const creds = user[0];
-
-  const isPasswordCorrect = await bcrypt.compare(password, creds.password);
-
-  if (!isPasswordCorrect) {
-    return res.status(401).json({
-      message: 'Incorrect password',
-    });
-  }
-
-  return res.json({
-    id: creds.id,
-    // TODO: Change role
-    accessToken: generateJwt(String(creds.id), 'user'),
-  });
-});
+  })
+  .get((req, res) => res.send('login'));

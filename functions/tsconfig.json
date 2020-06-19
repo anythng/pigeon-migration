@@ -13,9 +13,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@utils": ["src/utils/*"]
+      "@utils": ["utils/"],
+      "@utils/*": ["utils/*"]
     }
   },
   "compileOnSave": true,

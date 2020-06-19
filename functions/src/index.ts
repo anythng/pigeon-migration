@@ -1,8 +1,11 @@
-import * as functions from "firebase-functions";
-import { authApp } from "./authentication";
+import * as functions from 'firebase-functions';
 
-export const services = functions.https.onRequest(authApp);
+import './tsPaths';
+
+import { servicesApp } from './services';
+
+export const services = functions.https.onRequest(servicesApp);
 
 export const game = functions.https.onRequest((req, res) => {
-  res.send("game");
+  res.send('game');
 });
