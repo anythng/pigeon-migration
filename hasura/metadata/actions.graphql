@@ -1,32 +1,26 @@
 type Mutation {
-  login (
+  Login (
     identifier: String!
     password: String!
   ): LoginResponse
 }
 
 
-
-
-input SampleInput {
-  username : String!
-  password : String!
+type Mutation {
+  RegisterUser (
+    username: String!
+    password: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+  ): LoginResponse!
 }
 
-type GameDerivedOutput {
-  id : Int!
-}
 
-type CreateTestMetricOutput {
-  id : Int!
-}
+
 
 type LoginResponse {
   accessToken : String!
   id : Int!
-}
-
-type SampleOutput {
-  accessToken : String!
 }
 

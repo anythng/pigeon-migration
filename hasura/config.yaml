@@ -1,7 +1,7 @@
 version: 2
-endpoint: http://localhost:8080
+endpoint: http://192.168.0.58:8080
 admin_secret: myadminsecretkey
 metadata_directory: metadata
 actions:
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
+  handler_webhook_baseurl: http://localhost:5003/services

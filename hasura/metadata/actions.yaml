@@ -1,17 +1,15 @@
 actions:
-- name: login
+- name: Login
   definition:
     kind: synchronous
-    handler: http://192.168.0.58:5003/anythng-a5964/us-central1/services/login
-  permissions:
-  - role: anonymous
+    handler: http://192.168.0.58:5003/anythng-a5964/us-central1/services/auth/login
+- name: RegisterUser
+  definition:
+    kind: synchronous
+    handler: http://localhost:5003/services/auth/register
 custom_types:
   enums: []
-  input_objects:
-  - name: SampleInput
+  input_objects: []
   objects:
-  - name: GameDerivedOutput
-  - name: CreateTestMetricOutput
   - name: LoginResponse
-  - name: SampleOutput
   scalars: []
