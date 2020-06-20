@@ -7,4 +7,3 @@ export const authRouter = Router();
 
 authRouter.use(loginRoute);
 authRouter.use(registerRoute);
-

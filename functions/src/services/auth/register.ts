@@ -1,7 +1,7 @@
+import { execute, generateJwt, ActionHandler } from '@utils';
 import bcrypt from 'bcrypt';
-import { Router, RequestHandler, Response } from 'express';
+import { Router, Response } from 'express';
 
-import { execute, generateJwt } from '@utils';
 import { LoginResponse } from './types';
 
 interface RegisterUserArgs {
@@ -13,23 +13,23 @@ interface RegisterUserArgs {
 }
 
 const REGISTER_USER = `
-mutation RegisterUser(
-  $username: String
-  $password: String
-  $firstName: String
-  $lastName: String
-  $email: String
-){
-  insert_user_one(object: {
-    username: $username
-    password: $password
-    first_name: $firstName
-    last_name: $lastName
-    email: $email
-  }) {
-    id
+  mutation RegisterUser(
+    $username: String
+    $password: String
+    $firstName: String
+    $lastName: String
+    $email: String
+  ){
+    insert_user_one(object: {
+      username: $username
+      password: $password
+      first_name: $firstName
+      last_name: $lastName
+      email: $email
+    }) {
+      id
+    }
   }
-}
 `;
 
 interface RegisterUserData {
@@ -63,11 +63,10 @@ const RegisterUserHandler = async (
   };
 };
 
-const post: RequestHandler<
-  {},
-  LoginResponse | { message: string },
-  { input: RegisterUserArgs }
-> = async (req, res): Promise<Response<LoginResponse>> => {
+const post: ActionHandler<LoginResponse, RegisterUserArgs> = async (
+  req,
+  res,
+): Promise<Response<LoginResponse>> => {
   const { input } = req.body;
 
   try {

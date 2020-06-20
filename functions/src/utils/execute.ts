@@ -2,11 +2,11 @@ import fetch from 'node-fetch';
 import { generateJwt } from './generateJwt';
 
 type ExecuteData<T> = T & {
-  errors?: any;
+  errors?: unknown;
 };
 
 // TODO: Make a long standing JWT
-export const execute = async <Data = {}, Vars = {}>(
+export const execute = async <Data = unknown, Vars = unknown>(
   query: string,
   variables: Vars,
 ): Promise<ExecuteData<Data>> => {
