@@ -1,40 +1,14 @@
-import { execute, generateJwt, ActionHandler } from '@utils';
+import { generateJwt, ActionHandler } from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
-import { LoginResponse } from './types';
+import { getCredentials } from './gql';
+import { LoginResponse } from '../types';
 
 export const router = Router();
 
 interface LoginArgs {
   identifier: string;
-  password: string;
-}
-
-const CREDENTIALS_QUERY = `
-  query GetCredentials($identifier: String!) {
-    user(where: {
-      _or: [
-        { username: { _eq: $identifier} },
-        { email: { _eq: $identifier } },
-      ]
-    }) {
-      id
-      password
-    }
-  }
-`;
-
-interface GetCredentialsArgs {
-  identifier: string;
-}
-
-interface GetCredentialsData {
-  user: Credentials[];
-}
-
-interface Credentials {
-  id: number;
   password: string;
 }
 
@@ -44,11 +18,9 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
 ): Promise<Response<LoginResponse>> => {
   const { identifier, password }: LoginArgs = req.body.input;
 
-  const result: GetCredentialsData = await execute<
-    GetCredentialsData,
-    GetCredentialsArgs
-  >(CREDENTIALS_QUERY, { identifier });
-  const { user } = result;
+  const data = await getCredentials(identifier);
+
+  const { user } = data;
   // TODO: Handle error
 
   if (user.length === 0) {

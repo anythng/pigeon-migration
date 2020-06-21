@@ -1,8 +1,7 @@
 import * as functions from 'firebase-functions';
 
-import './tsPaths';
-
 import { servicesApp } from './services';
+import './tsPaths';
 
 export const services = functions.https.onRequest(servicesApp);
 
