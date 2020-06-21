@@ -196,6 +196,9 @@
     name: metric
 - table:
     schema: public
+    name: mike_table
+- table:
+    schema: public
     name: restaurant
   object_relationships:
   - name: restaurant_chain
@@ -332,18 +335,6 @@
         table:
           schema: public
           name: user_device
-  insert_permissions:
-  - role: anonymous
-    permission:
-      check: {}
-      columns:
-      - email
-      - first_name
-      - last_name
-      - password
-      - phone_number
-      - username
-      backend_only: false
   select_permissions:
   - role: user
     permission:
