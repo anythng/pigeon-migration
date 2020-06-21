@@ -1,5 +1,7 @@
 # Pigeon-Migration (name pending)
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 ## Setup
 
 Cloud functions has deprecated nodejs 6 & 8, and is now [officially supporting nodejs10](https://cloud.google.com/functions/docs/concepts/nodejs-10-runtime). We will need to install node10 either by hand or using `n`.
