@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "name": "pigeon-migration",
   "version": "0.0.1",
   "scripts": {
     "build": "rm -rf lib && tsc",
