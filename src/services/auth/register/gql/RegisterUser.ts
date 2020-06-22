@@ -2,12 +2,12 @@ import { execute } from '@utils';
 
 const QUERY = `
   mutation RegisterUser(
-    $username: String
-    $password: String
-    $firstName: String
-    $lastName: String
-    $email: String
-  ){
+    $username: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+  ) {
     insert_user_one(object: {
       username: $username
       password: $password

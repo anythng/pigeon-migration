@@ -1,9 +1,9 @@
-import { generateJwt, ActionHandler } from '@utils';
+import { generateJwt, ActionHandler, HttpStatus } from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
-import { LoginResponse } from '../types';
 import { registerUser, RegisterUserArgs } from './gql';
+import { LoginResponse } from '../types';
 
 const RegisterUserHandler = async (
   input: RegisterUserArgs,
@@ -32,7 +32,7 @@ const post: ActionHandler<LoginResponse, RegisterUserArgs> = async (
     const result = await RegisterUserHandler(input);
     return res.json(result);
   } catch (e) {
-    return res.status(400).json({
+    return res.status(HttpStatus.CONFLICT).json({
       message: e.message,
     });
   }

@@ -1,10 +1,12 @@
-import { generateJwt, ActionHandler, query, user } from '@utils';
+import { generateJwt, ActionHandler, query, user, HttpStatus } from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
 import { LoginResponse } from './types';
 
 export const router = Router();
+
+const UNAUTHORIZED = HttpStatus.UNAUTHORIZED;
 
 interface LoginArgs {
   identifier: string;
@@ -45,7 +47,7 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   try {
     creds = await getCredentials(identifier);
   } catch (e) {
-    return res.status(401).json({
+    return res.status(UNAUTHORIZED).json({
       message: e.message,
     });
   }
@@ -53,7 +55,7 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
   if (!isPasswordCorrect) {
-    return res.status(401).json({
+    return res.status(UNAUTHORIZED).json({
       message: 'Incorrect password',
     });
   }
