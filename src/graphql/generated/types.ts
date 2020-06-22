@@ -7685,199 +7685,6 @@ type t_metric_variance_fields = FieldsType<
 export type metric_variance_order_by = { id?: order_by | null };
 
 /**
- * @name mike_table
- * @type OBJECT
- */
-type t_mike_table = FieldsType<
-  {
-    __typename: t_String<'mike_table'>;
-    id: t_uuid;
-  },
-  Extension<'mike_table'>
->;
-
-/**
- * @name mike_table_aggregate
- * @type OBJECT
- */
-type t_mike_table_aggregate = FieldsType<
-  {
-    __typename: t_String<'mike_table_aggregate'>;
-    aggregate?: t_mike_table_aggregate_fields | null;
-    nodes: t_mike_table[];
-  },
-  Extension<'mike_table_aggregate'>
->;
-
-/**
- * @name mike_table_aggregate_fields
- * @type OBJECT
- */
-type t_mike_table_aggregate_fields = FieldsType<
-  {
-    __typename: t_String<'mike_table_aggregate_fields'>;
-    count?: FieldsTypeArg<
-      {
-        columns?: mike_table_select_column[] | null;
-        distinct?: boolean | null;
-      },
-      t_Int | null
-    >;
-    max?: t_mike_table_max_fields | null;
-    min?: t_mike_table_min_fields | null;
-  },
-  Extension<'mike_table_aggregate_fields'>
->;
-
-/**
- * @name mike_table_aggregate_order_by
- * @type INPUT_OBJECT
- */
-export type mike_table_aggregate_order_by = {
-  count?: order_by | null;
-  max?: mike_table_max_order_by | null;
-  min?: mike_table_min_order_by | null;
-};
-
-/**
- * @name mike_table_arr_rel_insert_input
- * @type INPUT_OBJECT
- */
-export type mike_table_arr_rel_insert_input = {
-  data: mike_table_insert_input[];
-  on_conflict?: mike_table_on_conflict | null;
-};
-
-/**
- * @name mike_table_bool_exp
- * @type INPUT_OBJECT
- */
-export type mike_table_bool_exp = {
-  _and?: (mike_table_bool_exp | null)[] | null;
-  _not?: mike_table_bool_exp | null;
-  _or?: (mike_table_bool_exp | null)[] | null;
-  id?: uuid_comparison_exp | null;
-};
-
-/**
- * @name mike_table_constraint
- * @type ENUM
- */
-type t_mike_table_constraint = EnumType<'mike_table_pkey'>;
-
-/**
- * @name mike_table_insert_input
- * @type INPUT_OBJECT
- */
-export type mike_table_insert_input = { id?: any | null };
-
-/**
- * @name mike_table_max_fields
- * @type OBJECT
- */
-type t_mike_table_max_fields = FieldsType<
-  {
-    __typename: t_String<'mike_table_max_fields'>;
-    id?: t_uuid | null;
-  },
-  Extension<'mike_table_max_fields'>
->;
-
-/**
- * @name mike_table_max_order_by
- * @type INPUT_OBJECT
- */
-export type mike_table_max_order_by = { id?: order_by | null };
-
-/**
- * @name mike_table_min_fields
- * @type OBJECT
- */
-type t_mike_table_min_fields = FieldsType<
-  {
-    __typename: t_String<'mike_table_min_fields'>;
-    id?: t_uuid | null;
-  },
-  Extension<'mike_table_min_fields'>
->;
-
-/**
- * @name mike_table_min_order_by
- * @type INPUT_OBJECT
- */
-export type mike_table_min_order_by = { id?: order_by | null };
-
-/**
- * @name mike_table_mutation_response
- * @type OBJECT
- */
-type t_mike_table_mutation_response = FieldsType<
-  {
-    __typename: t_String<'mike_table_mutation_response'>;
-
-    /**
-     * number of affected rows by the mutation
-     */
-    affected_rows: t_Int;
-
-    /**
-     * data of the affected rows by the mutation
-     */
-    returning: t_mike_table[];
-  },
-  Extension<'mike_table_mutation_response'>
->;
-
-/**
- * @name mike_table_obj_rel_insert_input
- * @type INPUT_OBJECT
- */
-export type mike_table_obj_rel_insert_input = {
-  data: mike_table_insert_input;
-  on_conflict?: mike_table_on_conflict | null;
-};
-
-/**
- * @name mike_table_on_conflict
- * @type INPUT_OBJECT
- */
-export type mike_table_on_conflict = {
-  constraint: mike_table_constraint;
-  update_columns: mike_table_update_column[];
-  where?: mike_table_bool_exp | null;
-};
-
-/**
- * @name mike_table_order_by
- * @type INPUT_OBJECT
- */
-export type mike_table_order_by = { id?: order_by | null };
-
-/**
- * @name mike_table_pk_columns_input
- * @type INPUT_OBJECT
- */
-export type mike_table_pk_columns_input = { id: any };
-
-/**
- * @name mike_table_select_column
- * @type ENUM
- */
-type t_mike_table_select_column = EnumType<'id'>;
-
-/**
- * @name mike_table_set_input
- * @type INPUT_OBJECT
- */
-export type mike_table_set_input = { id?: any | null };
-
-/**
- * @name mike_table_update_column
- * @type ENUM
- */
-type t_mike_table_update_column = EnumType<'id'>;
-
-/**
  * @name mutation_root
  * @type OBJECT
  */
@@ -8125,19 +7932,6 @@ type t_mutation_root = FieldsType<
      * delete single row from the table: "metric"
      */
     delete_metric_by_pk?: FieldsTypeArg<{ id: number }, t_metric | null>;
-
-    /**
-     * delete data from the table: "mike_table"
-     */
-    delete_mike_table?: FieldsTypeArg<
-      { where: mike_table_bool_exp },
-      t_mike_table_mutation_response | null
-    >;
-
-    /**
-     * delete single row from the table: "mike_table"
-     */
-    delete_mike_table_by_pk?: FieldsTypeArg<{ id: any }, t_mike_table | null>;
 
     /**
      * delete data from the table: "restaurant"
@@ -8568,28 +8362,6 @@ type t_mutation_root = FieldsType<
     insert_metric_one?: FieldsTypeArg<
       { object: metric_insert_input; on_conflict?: metric_on_conflict | null },
       t_metric | null
-    >;
-
-    /**
-     * insert data into the table: "mike_table"
-     */
-    insert_mike_table?: FieldsTypeArg<
-      {
-        objects: mike_table_insert_input[];
-        on_conflict?: mike_table_on_conflict | null;
-      },
-      t_mike_table_mutation_response | null
-    >;
-
-    /**
-     * insert a single row into the table: "mike_table"
-     */
-    insert_mike_table_one?: FieldsTypeArg<
-      {
-        object: mike_table_insert_input;
-        on_conflict?: mike_table_on_conflict | null;
-      },
-      t_mike_table | null
     >;
 
     /**
@@ -9120,25 +8892,6 @@ type t_mutation_root = FieldsType<
         pk_columns: metric_pk_columns_input;
       },
       t_metric | null
-    >;
-
-    /**
-     * update data of the table: "mike_table"
-     */
-    update_mike_table?: FieldsTypeArg<
-      { _set?: mike_table_set_input | null; where: mike_table_bool_exp },
-      t_mike_table_mutation_response | null
-    >;
-
-    /**
-     * update single row of the table: "mike_table"
-     */
-    update_mike_table_by_pk?: FieldsTypeArg<
-      {
-        _set?: mike_table_set_input | null;
-        pk_columns: mike_table_pk_columns_input;
-      },
-      t_mike_table | null
     >;
 
     /**
@@ -9852,39 +9605,6 @@ type t_query_root = FieldsType<
      * fetch data from the table: "metric" using primary key columns
      */
     metric_by_pk?: FieldsTypeArg<{ id: number }, t_metric | null>;
-
-    /**
-     * fetch data from the table: "mike_table"
-     */
-    mike_table: FieldsTypeArg<
-      {
-        distinct_on?: mike_table_select_column[] | null;
-        limit?: number | null;
-        offset?: number | null;
-        order_by?: mike_table_order_by[] | null;
-        where?: mike_table_bool_exp | null;
-      },
-      t_mike_table[]
-    >;
-
-    /**
-     * fetch aggregated fields from the table: "mike_table"
-     */
-    mike_table_aggregate: FieldsTypeArg<
-      {
-        distinct_on?: mike_table_select_column[] | null;
-        limit?: number | null;
-        offset?: number | null;
-        order_by?: mike_table_order_by[] | null;
-        where?: mike_table_bool_exp | null;
-      },
-      t_mike_table_aggregate
-    >;
-
-    /**
-     * fetch data from the table: "mike_table" using primary key columns
-     */
-    mike_table_by_pk?: FieldsTypeArg<{ id: any }, t_mike_table | null>;
 
     /**
      * fetch data from the table: "restaurant"
@@ -13331,39 +13051,6 @@ type t_subscription_root = FieldsType<
      * fetch data from the table: "metric" using primary key columns
      */
     metric_by_pk?: FieldsTypeArg<{ id: number }, t_metric | null>;
-
-    /**
-     * fetch data from the table: "mike_table"
-     */
-    mike_table: FieldsTypeArg<
-      {
-        distinct_on?: mike_table_select_column[] | null;
-        limit?: number | null;
-        offset?: number | null;
-        order_by?: mike_table_order_by[] | null;
-        where?: mike_table_bool_exp | null;
-      },
-      t_mike_table[]
-    >;
-
-    /**
-     * fetch aggregated fields from the table: "mike_table"
-     */
-    mike_table_aggregate: FieldsTypeArg<
-      {
-        distinct_on?: mike_table_select_column[] | null;
-        limit?: number | null;
-        offset?: number | null;
-        order_by?: mike_table_order_by[] | null;
-        where?: mike_table_bool_exp | null;
-      },
-      t_mike_table_aggregate
-    >;
-
-    /**
-     * fetch data from the table: "mike_table" using primary key columns
-     */
-    mike_table_by_pk?: FieldsTypeArg<{ id: any }, t_mike_table | null>;
 
     /**
      * fetch data from the table: "restaurant"
@@ -17160,70 +16847,6 @@ export type metric_var_samp_fields = TypeData<t_metric_var_samp_fields>;
  * @type OBJECT
  */
 export type metric_variance_fields = TypeData<t_metric_variance_fields>;
-
-/**
- * @name mike_table
- * @type OBJECT
- */
-export type mike_table = TypeData<t_mike_table>;
-
-/**
- * @name mike_table_aggregate
- * @type OBJECT
- */
-export type mike_table_aggregate = TypeData<t_mike_table_aggregate>;
-
-/**
- * @name mike_table_aggregate_fields
- * @type OBJECT
- */
-export type mike_table_aggregate_fields = TypeData<
-  t_mike_table_aggregate_fields
->;
-
-/**
- * @name mike_table_constraint
- * @type ENUM
- */
-export enum mike_table_constraint {
-  mike_table_pkey = 'mike_table_pkey',
-}
-
-/**
- * @name mike_table_max_fields
- * @type OBJECT
- */
-export type mike_table_max_fields = TypeData<t_mike_table_max_fields>;
-
-/**
- * @name mike_table_min_fields
- * @type OBJECT
- */
-export type mike_table_min_fields = TypeData<t_mike_table_min_fields>;
-
-/**
- * @name mike_table_mutation_response
- * @type OBJECT
- */
-export type mike_table_mutation_response = TypeData<
-  t_mike_table_mutation_response
->;
-
-/**
- * @name mike_table_select_column
- * @type ENUM
- */
-export enum mike_table_select_column {
-  id = 'id',
-}
-
-/**
- * @name mike_table_update_column
- * @type ENUM
- */
-export enum mike_table_update_column {
-  id = 'id',
-}
 
 /**
  * @name mutation_root

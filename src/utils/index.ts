@@ -1,4 +1,4 @@
 export { execute } from './execute';
-export { generateJwt } from './generateJwt';
+export { generateJwt, generateAdminJwt } from './generateJwt';
 
 export * from './hasura';

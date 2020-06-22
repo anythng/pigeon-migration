@@ -31,3 +31,6 @@ export const generateJwt = (
     // TODO: Move to env var
     'cbSgdqVO/e2pEkNzmN6ozFPMDpnZJrz2',
   );
+
+export const generateAdminJwt = (otherOptions?: SignOptions): string =>
+  generateJwt('-1', 'admin', { expiresIn: '40s', ...otherOptions });
