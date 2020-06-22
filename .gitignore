@@ -46,5 +46,5 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Constants
-/src/users/auth.constants.ts
+# eslint
+.eslintcache
