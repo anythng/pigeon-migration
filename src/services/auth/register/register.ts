@@ -1,4 +1,9 @@
-import { generateJwt, ActionHandler, HttpStatus } from '@utils';
+import {
+  generateJwt,
+  ActionHandler,
+  HttpStatus,
+  trimObjectString,
+} from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
@@ -8,7 +13,8 @@ import { LoginResponse } from '../types';
 const RegisterUserHandler = async (
   input: RegisterUserArgs,
 ): Promise<LoginResponse> | never => {
-  const { password, ...restUser } = input;
+  const trimmedInput = trimObjectString<RegisterUserArgs>(input);
+  const { password, ...restUser } = trimmedInput;
   const hashedPw = await bcrypt.hash(password, 10);
 
   const newId = await registerUser({
