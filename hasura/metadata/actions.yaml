@@ -2,13 +2,13 @@ actions:
 - name: Login
   definition:
     kind: synchronous
-    handler: http://192.168.0.58:5003/anythng-a5964/us-central1/services/auth/login
+    handler: http://192.168.0.38:5003/anythng-a5964/us-central1/services/auth/login
   permissions:
   - role: anonymous
 - name: RegisterUser
   definition:
     kind: synchronous
-    handler: http://192.168.0.58:5003/anythng-a5964/us-central1/services/auth/register
+    handler: http://192.168.0.38:5003/anythng-a5964/us-central1/services/auth/register
   permissions:
   - role: anonymous
 custom_types:

@@ -196,9 +196,6 @@
     name: metric
 - table:
     schema: public
-    name: mike_table
-- table:
-    schema: public
     name: restaurant
   object_relationships:
   - name: restaurant_chain

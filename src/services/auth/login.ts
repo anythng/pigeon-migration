@@ -1,9 +1,8 @@
-import { generateJwt, ActionHandler } from '@utils';
+import { generateJwt, ActionHandler, query, user } from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
-import { getCredentials } from './gql';
-import { LoginResponse } from '../types';
+import { LoginResponse } from './types';
 
 export const router = Router();
 
@@ -12,24 +11,44 @@ interface LoginArgs {
   password: string;
 }
 
+const getCredentials = async (identifier: string): Promise<user> | never => {
+  const users = await query.user({
+    where: {
+      _or: [
+        {
+          username: { _eq: identifier },
+        },
+        {
+          email: { _eq: identifier },
+        },
+      ],
+    },
+  });
+
+  // TODO: Handle fetching error
+
+  if (users.length === 0) {
+    throw new Error('Incorrect credentials');
+  }
+
+  return users[0];
+};
+
 const post: ActionHandler<LoginResponse, LoginArgs> = async (
   req,
   res,
 ): Promise<Response<LoginResponse>> => {
   const { identifier, password }: LoginArgs = req.body.input;
 
-  const data = await getCredentials(identifier);
+  let creds: user;
 
-  const { user } = data;
-  // TODO: Handle error
-
-  if (user.length === 0) {
+  try {
+    creds = await getCredentials(identifier);
+  } catch (e) {
     return res.status(401).json({
-      message: 'Incorrect credentials',
+      message: e.message,
     });
   }
-
-  const creds = user[0];
 
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
@@ -41,7 +60,6 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
 
   return res.json({
     id: creds.id,
-    // TODO: Change role
     accessToken: generateJwt(String(creds.id), 'user'),
   });
 };
