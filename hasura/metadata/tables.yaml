@@ -292,9 +292,6 @@
       foreign_key_constraint_on: restaurantId
 - table:
     schema: public
-    name: test_table
-- table:
-    schema: public
     name: user
   array_relationships:
   - name: contacts
@@ -343,7 +340,6 @@
       - email
       - first_name
       - last_name
-      - diet
       - chicken
       - pork
       - turkey
@@ -354,9 +350,9 @@
       - shellfish
       - vegetables
       - animal_products
-      - vegan
-      - vegetarian
       - created_at
+      - photo
+      - blocked_foods
       filter: {}
   update_permissions:
   - role: user
@@ -371,18 +367,17 @@
       - pork
       - shellfish
       - turkey
-      - vegan
       - vegetables
-      - vegetarian
       - id
       - created_at
-      - diet
       - email
       - first_name
       - last_name
       - password
       - phone_number
       - username
+      - photo
+      - blocked_foods
       filter:
         id:
           _eq: X-Hasura-User-Id
