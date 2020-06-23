@@ -1,5 +1,7 @@
-import { execute } from '@utils';
+import { execute, HttpError } from '@utils';
 import { User } from '@utils/schema';
+
+import errors from '../errors';
 
 const QUERY = `
   query GetCredentials($identifier: String!) {
@@ -35,7 +37,7 @@ export const getCredentials = async (
   const { user } = data;
 
   if (user.length !== 1) {
-    throw new Error('Invalid Credentials!');
+    throw new HttpError(errors.INVALID_ID);
   }
 
   return user[0];

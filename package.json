@@ -82,8 +82,8 @@
       "./setupJest.ts"
     ],
     "moduleNameMapper": {
-      "@utils": "<rootDir>/utils",
-      "@utils/(.*)": "<rootDir>/utils/$1"
+      "@utils/(.*)": "<rootDir>/utils/$1",
+      "@utils": "<rootDir>/utils"
     },
     "moduleFileExtensions": [
       "js",

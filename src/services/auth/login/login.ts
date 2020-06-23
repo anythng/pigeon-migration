@@ -1,4 +1,4 @@
-import { generateJwt, ActionHandler, HttpStatus } from '@utils';
+import { generateJwt, ActionHandler, HttpError } from '@utils';
 import {
   LoginResponse,
   Mutation_RootLoginArgs as LoginArgs,
@@ -9,8 +9,7 @@ import { Router, Response } from 'express';
 import { Credentials, getCredentials } from './gql';
 
 export const router = Router();
-
-const UNAUTHORIZED = HttpStatus.UNAUTHORIZED;
+export const route = '/login';
 
 const post: ActionHandler<LoginResponse, LoginArgs> = async (
   req,
@@ -23,15 +22,19 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   try {
     creds = await getCredentials(identifier);
   } catch (e) {
-    return res.status(UNAUTHORIZED).json({
-      message: e.message,
-    });
+    if (e.name === HttpError.name) {
+      const { status, message }: HttpError = e;
+      return res.status(status).json({
+        message,
+      });
+    }
+    return res.status(404).json({ message: e.message });
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
   if (!isPasswordCorrect) {
-    return res.status(UNAUTHORIZED).json({
+    return res.status(401).json({
       message: 'Incorrect password',
     });
   }
@@ -43,6 +46,6 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
 };
 
 router
-  .route('/login')
+  .route(route)
   .get((_, res) => res.send('login'))
   .post(post);
