@@ -45,9 +45,10 @@ const post: ActionHandler<LoginResponse, RegisterUserArgs> = async (
   }
 };
 
+export const route = '/register';
 export const router = Router();
 
 router
-  .route('/register')
+  .route(route)
   .get((_, res) => res.send('register'))
   .post(post);

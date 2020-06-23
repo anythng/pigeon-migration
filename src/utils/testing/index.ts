@@ -1,1 +1,1 @@
-export * from './setupApp';
+export * from './TestApp';

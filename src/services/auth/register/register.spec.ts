@@ -1,12 +1,11 @@
-import express, { Express } from 'express';
+import { TestApp } from '@utils/testing';
 import fetch from 'jest-fetch-mock';
-import request from 'supertest';
 
 import { RegisterUserData, RegisterUserArgs } from './gql';
-import { router } from './register';
+import { route, router } from './register';
 
 describe('Register handler', (): void => {
-  let app: Express;
+  let app: TestApp;
 
   const input: RegisterUserArgs = {
     username: 'testuser1',
@@ -17,9 +16,7 @@ describe('Register handler', (): void => {
   };
 
   beforeAll(() => {
-    app = express();
-    app.use(express.json());
-    app.use(router);
+    app = new TestApp(router, route);
   });
 
   afterAll(() => {
@@ -34,11 +31,12 @@ describe('Register handler', (): void => {
     };
     fetch.mockResponseOnce(JSON.stringify({ data }));
 
-    const res = await request(app).post('/register').send({
-      input,
-    });
+    const res = await app.post({ input });
 
+    expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('accessToken');
     expect(res.body).toHaveProperty('id');
   });
+
+  // it('should ')
 });
