@@ -5,7 +5,7 @@
     "build": "rm -rf lib && tsc",
     "build:watch": "rm -rf lib && tsc -w",
     "format": "prettier --write \"src/**/*.ts\"",
-    "generate": "gqless generate",
+    "generate": "graphql-codegen --config codegen.yml",
     "lint": "eslint .",
     "serve:dev": "yarn run build:watch | firebase serve --only functions",
     "serve": "yarn run build && firebase emulators:start --only functions",
@@ -24,6 +24,7 @@
     "express": "4.16.4",
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.7.0",
+    "graphql": "^15.1.0",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "node-fetch": "2.6.0"
@@ -31,6 +32,10 @@
   "devDependencies": {
     "@digitalroute/cz-conventional-changelog-for-jira": "4.1.4",
     "@firebase/app-types": "^0.6.1",
+    "@graphql-codegen/cli": "1.15.4",
+    "@graphql-codegen/introspection": "1.15.4",
+    "@graphql-codegen/typescript": "1.15.4",
+    "@graphql-codegen/typescript-resolvers": "1.15.4",
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.6",
     "@types/jest": "^26.0.0",
