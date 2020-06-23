@@ -49,7 +49,7 @@ describe('Register handler', (): void => {
           },
           message:
             'Uniqueness violation. duplicate key value violates unique constraint \
-             "UQ_78a916df40e02a9deb1c4b75edb',
+             "UQ_78a916df40e02a9deb1c4b75edb"',
         },
       ],
     };
@@ -58,6 +58,29 @@ describe('Register handler', (): void => {
     const res = await app.post({ input });
 
     const expected = errors.CONFLICT_USERNAME;
+    expect(res.status).toBe(expected.status);
+    expect(res.body).toHaveProperty('message', expected.message);
+  });
+
+  it('should throw http.conflict given existing username', async () => {
+    const gqlError = {
+      errors: [
+        {
+          extensions: {
+            path: '$.selectionSet.insert_user_one.args.object',
+            code: 'constraint-violation',
+          },
+          message:
+            'Uniqueness violation. duplicate key value violates unique constraint \
+             "UQ_e12875dfb3b1d92d7d7c5377e22"',
+        },
+      ],
+    };
+    fetch.mockResponseOnce(JSON.stringify(gqlError));
+
+    const res = await app.post({ input });
+
+    const expected = errors.CONFLICT_EMAIL;
     expect(res.status).toBe(expected.status);
     expect(res.body).toHaveProperty('message', expected.message);
   });

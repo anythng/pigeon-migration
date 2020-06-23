@@ -3,6 +3,7 @@ import {
   ActionHandler,
   HttpStatus,
   trimObjectString,
+  HttpError,
 } from '@utils';
 import { LoginResponse } from '@utils/schema';
 import bcrypt from 'bcrypt';
@@ -38,10 +39,16 @@ const post: ActionHandler<LoginResponse, RegisterUserArgs> = async (
     const result = await RegisterUserHandler(input);
     return res.json(result);
   } catch (e) {
-    console.error('ERROR', e.message);
-    return res.status(HttpStatus.CONFLICT).json({
-      message: e.message,
-    });
+    console.error(e.message);
+    if (e.name === HttpError.name) {
+      const { status, message }: HttpError = e;
+      return res.status(status).json({
+        message,
+      });
+    }
+    return res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ message: e.message });
   }
 };
 

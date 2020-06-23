@@ -1,4 +1,4 @@
-import { generateJwt, ActionHandler, HttpError } from '@utils';
+import { generateJwt, ActionHandler, HttpError, HttpStatus } from '@utils';
 import {
   LoginResponse,
   Mutation_RootLoginArgs as LoginArgs,
@@ -28,7 +28,9 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
         message,
       });
     }
-    return res.status(404).json({ message: e.message });
+    return res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ message: e.message });
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);

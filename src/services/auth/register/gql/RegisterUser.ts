@@ -34,6 +34,7 @@ export interface Data {
 export { Args as RegisterUserArgs, Data as RegisterUserData };
 
 const USERNAME_CONSTRAINT = 'UQ_78a916df40e02a9deb1c4b75edb';
+const EMAIL_CONSTRAINT = 'UQ_e12875dfb3b1d92d7d7c5377e22';
 
 export const registerUser = async (newUser: Args): Promise<number> | never => {
   try {
@@ -47,6 +48,10 @@ export const registerUser = async (newUser: Args): Promise<number> | never => {
 
         if (offendingError.message.includes(USERNAME_CONSTRAINT)) {
           throw new HttpError(errors.CONFLICT_USERNAME);
+        }
+
+        if (offendingError.message.includes(EMAIL_CONSTRAINT)) {
+          throw new HttpError(errors.CONFLICT_EMAIL);
         }
 
         throw e;
