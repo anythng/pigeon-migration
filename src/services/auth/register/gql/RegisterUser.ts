@@ -1,5 +1,7 @@
-import { execute } from '@utils';
+import { execute, ExecuteError, HttpError } from '@utils';
 import { Mutation_RootRegisterUserArgs as Args } from '@utils/schema';
+
+import errors from '../errors';
 
 const QUERY = `
   mutation RegisterUser(
@@ -31,8 +33,26 @@ export interface Data {
 
 export { Args as RegisterUserArgs, Data as RegisterUserData };
 
-export const registerUser = async (newUser: Args): Promise<number> | never => {
-  const data = await execute<Data, Args>(QUERY, newUser);
+const USERNAME_CONSTRAINT = 'UQ_78a916df40e02a9deb1c4b75edb';
 
-  return data.insert_user_one.id;
+export const registerUser = async (newUser: Args): Promise<number> | never => {
+  try {
+    const data = await execute<Data, Args>(QUERY, newUser);
+    return data.insert_user_one.id;
+  } catch (e) {
+    switch (e.name) {
+      case ExecuteError.name: {
+        const executeError: ExecuteError = e;
+        const offendingError = executeError.errors[0];
+
+        if (offendingError.message.includes(USERNAME_CONSTRAINT)) {
+          throw new HttpError(errors.CONFLICT_USERNAME);
+        }
+
+        throw e;
+      }
+      default:
+        throw e;
+    }
+  }
 };

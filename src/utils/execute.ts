@@ -1,18 +1,38 @@
 import fetch from 'node-fetch';
 import { generateAdminJwt } from './generateJwt';
 
-type ExecuteData<T> = T & {
-  errors?: unknown;
+interface GqlError {
+  extensions: {
+    path: string;
+    code: string | number;
+  };
+  message: string;
+}
+
+type ExecuteData<T = unknown> = T & {
+  data?: T;
+  errors?: GqlError[];
 };
+
+export class ExecuteError extends Error {
+  errors: GqlError[];
+
+  constructor(errors: GqlError[]) {
+    super(JSON.stringify(errors));
+    Object.setPrototypeOf(this, new.target.prototype);
+    this.name = ExecuteError.name;
+    this.errors = errors;
+  }
+}
 
 export const endpoint = 'http://192.168.99.100:8080/v1/graphql';
 
 // TODO: Make a long standing JWT
-export const execute = async <Data = unknown, Vars = unknown>(
+export const execute = async <Data = { data: unknown }, Vars = unknown>(
   query: string,
   variables: Vars,
   options = { verbose: false },
-): Promise<ExecuteData<Data>> | never => {
+): Promise<Data> | never => {
   const token = generateAdminJwt();
   const fetchResponse = await fetch(endpoint, {
     method: 'POST',
@@ -25,14 +45,18 @@ export const execute = async <Data = unknown, Vars = unknown>(
     }),
   });
 
-  const data = await fetchResponse.json();
+  const data: ExecuteData<Data> = await fetchResponse.json();
   if (options.verbose) {
     console.log('DEBUG:', data);
   }
 
   if (data.errors) {
-    throw new Error(JSON.stringify(data));
+    throw new ExecuteError(data.errors);
   }
 
-  return data.data || data;
+  if (!data.data) {
+    throw new Error('No Data or Error!!!');
+  }
+
+  return data.data;
 };

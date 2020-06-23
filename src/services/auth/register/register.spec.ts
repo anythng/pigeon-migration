@@ -1,6 +1,7 @@
 import { TestApp } from '@utils/testing';
 import fetch from 'jest-fetch-mock';
 
+import errors from './errors';
 import { RegisterUserData, RegisterUserArgs } from './gql';
 import { route, router } from './register';
 
@@ -38,5 +39,26 @@ describe('Register handler', (): void => {
     expect(res.body).toHaveProperty('id');
   });
 
-  // it('should ')
+  it('should throw http.conflict given existing username', async () => {
+    const gqlError = {
+      errors: [
+        {
+          extensions: {
+            path: '$.selectionSet.insert_user_one.args.object',
+            code: 'constraint-violation',
+          },
+          message:
+            'Uniqueness violation. duplicate key value violates unique constraint \
+             "UQ_78a916df40e02a9deb1c4b75edb',
+        },
+      ],
+    };
+    fetch.mockResponseOnce(JSON.stringify(gqlError));
+
+    const res = await app.post({ input });
+
+    const expected = errors.CONFLICT_USERNAME;
+    expect(res.status).toBe(expected.status);
+    expect(res.body).toHaveProperty('message', expected.message);
+  });
 });

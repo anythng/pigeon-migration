@@ -1,4 +1,4 @@
-export { execute, endpoint } from './execute';
+export { execute, endpoint, ExecuteError } from './execute';
 export { generateJwt, generateAdminJwt } from './generateJwt';
 export { trimObjectString } from './trimObjectStrings';
 export * from './HttpError';
