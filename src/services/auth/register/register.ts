@@ -38,6 +38,7 @@ const post: ActionHandler<LoginResponse, RegisterUserArgs> = async (
     const result = await RegisterUserHandler(input);
     return res.json(result);
   } catch (e) {
+    console.error('ERROR', e.message);
     return res.status(HttpStatus.CONFLICT).json({
       message: e.message,
     });

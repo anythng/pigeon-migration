@@ -5,7 +5,7 @@ const endpoint = 'http://192.168.0.38:8080/v1/graphql';
 
 const fetchQuery: QueryFetcher = async (query, variables) => {
   const response = await fetch(endpoint, {
-    method: 'POST',
+    // method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -13,7 +13,6 @@ const fetchQuery: QueryFetcher = async (query, variables) => {
       query,
       variables,
     }),
-    mode: 'cors',
   });
 
   if (!response.ok) {

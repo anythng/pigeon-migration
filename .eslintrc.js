@@ -23,6 +23,7 @@ module.exports = {
     quotes: [2, 'single', { avoidEscape: true }],
     'max-len': ['error', { code: 100 }],
     '@typescript-eslint/explicit-function-return-type': ['error'],
+    '@typescript-eslint/no-unused-vars': [1],
   },
   env: {
     node: true,

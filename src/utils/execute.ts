@@ -5,13 +5,15 @@ type ExecuteData<T> = T & {
   errors?: unknown;
 };
 
+export const endpoint = 'http://192.168.99.100:8080/v1/graphql';
+
 // TODO: Make a long standing JWT
 export const execute = async <Data = unknown, Vars = unknown>(
   query: string,
   variables: Vars,
 ): Promise<ExecuteData<Data>> => {
   const token = generateAdminJwt();
-  const fetchResponse = await fetch('http://192.168.99.100:8080/v1/graphql', {
+  const fetchResponse = await fetch(endpoint, {
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + token,
@@ -21,7 +23,8 @@ export const execute = async <Data = unknown, Vars = unknown>(
       variables,
     }),
   });
+
   const data = await fetchResponse.json();
-  console.log('DEBUG: ', data);
+  console.log('DEBUG:', data);
   return data.data || data;
 };

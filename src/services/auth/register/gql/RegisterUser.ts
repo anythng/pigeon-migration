@@ -20,7 +20,7 @@ const QUERY = `
   }
 `;
 
-export interface RegisterUserArgs {
+export interface Args {
   username: string;
   password: string;
   firstName: string;
@@ -28,16 +28,14 @@ export interface RegisterUserArgs {
   email: string;
 }
 
-interface Data {
+export interface Data {
   insert_user_one: {
     id: number;
   };
 }
 
-export const registerUser = async (
-  newUser: RegisterUserArgs,
-): Promise<number> | never => {
-  const data = await execute<Data, RegisterUserArgs>(QUERY, newUser);
+export const registerUser = async (newUser: Args): Promise<number> | never => {
+  const data = await execute<Data, Args>(QUERY, newUser);
 
   if (data.errors) {
     throw new Error(JSON.stringify(data));

@@ -14,7 +14,7 @@ interface LoginArgs {
 }
 
 const getCredentials = async (identifier: string): Promise<user> | never => {
-  const users = await query.user({
+  const users = query.user({
     where: {
       _or: [
         {
@@ -29,10 +29,11 @@ const getCredentials = async (identifier: string): Promise<user> | never => {
 
   // TODO: Handle fetching error
 
-  if (users.length === 0) {
+  if (users.length !== 1) {
     throw new Error('Incorrect credentials');
   }
 
+  console.log(users);
   return users[0];
 };
 
@@ -40,18 +41,21 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   req,
   res,
 ): Promise<Response<LoginResponse>> => {
-  const { identifier, password }: LoginArgs = req.body.input;
+  const { identifier, password } = req.body.input;
+  console.log(identifier, password);
 
   let creds: user;
 
   try {
     creds = await getCredentials(identifier);
+    console.log(creds);
   } catch (e) {
     return res.status(UNAUTHORIZED).json({
       message: e.message,
     });
   }
 
+  console.log(password, creds.password);
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
   if (!isPasswordCorrect) {

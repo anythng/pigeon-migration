@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as extensions from '../extensions';
 import {
   TypeData,
@@ -445,11 +446,6 @@ export type authenticated_bool_exp = {
   user_id?: Int_comparison_exp | null;
 };
 
-/**
- * @name authenticated_constraint
- * @type ENUM
- */
-type t_authenticated_constraint = EnumType<'PK_170fa06690c73d5f53d44b76e90'>;
 
 /**
  * @name authenticated_inc_input
@@ -582,13 +578,6 @@ export type authenticated_order_by = {
  */
 export type authenticated_pk_columns_input = { id: number };
 
-/**
- * @name authenticated_select_column
- * @type ENUM
- */
-type t_authenticated_select_column = EnumType<
-  'active' | 'created_on' | 'id' | 'payload_hash' | 'user_id'
->;
 
 /**
  * @name authenticated_set_input
@@ -690,13 +679,6 @@ export type authenticated_sum_order_by = {
   user_id?: order_by | null;
 };
 
-/**
- * @name authenticated_update_column
- * @type ENUM
- */
-type t_authenticated_update_column = EnumType<
-  'active' | 'created_on' | 'id' | 'payload_hash' | 'user_id'
->;
 
 /**
  * @name authenticated_var_pop_fields
@@ -894,11 +876,6 @@ export type contact_bool_exp = {
   user_id?: Int_comparison_exp | null;
 };
 
-/**
- * @name contact_constraint
- * @type ENUM
- */
-type t_contact_constraint = EnumType<'PK_2cbbe00f59ab6b3bb5b8d19f989'>;
 
 /**
  * @name contact_inc_input
@@ -1030,13 +1007,6 @@ export type contact_order_by = {
  */
 export type contact_pk_columns_input = { id: number };
 
-/**
- * @name contact_select_column
- * @type ENUM
- */
-type t_contact_select_column = EnumType<
-  'contact_id' | 'id' | 'status' | 'user_id'
->;
 
 /**
  * @name contact_set_input
@@ -1170,13 +1140,6 @@ export type contact_sum_order_by = {
   user_id?: order_by | null;
 };
 
-/**
- * @name contact_update_column
- * @type ENUM
- */
-type t_contact_update_column = EnumType<
-  'contact_id' | 'id' | 'status' | 'user_id'
->;
 
 /**
  * @name contact_var_pop_fields
@@ -1416,11 +1379,6 @@ export type cuisine_bool_exp = {
   restaurant_cuisines?: restaurant_cuisine_bool_exp | null;
 };
 
-/**
- * @name cuisine_constraint
- * @type ENUM
- */
-type t_cuisine_constraint = EnumType<'PK_d4c1e9427b94335350fecaf238e'>;
 
 /**
  * @name cuisine_inc_input
@@ -1540,11 +1498,6 @@ export type cuisine_order_by = {
  */
 export type cuisine_pk_columns_input = { id: number };
 
-/**
- * @name cuisine_select_column
- * @type ENUM
- */
-type t_cuisine_select_column = EnumType<'id' | 'name'>;
 
 /**
  * @name cuisine_set_input
@@ -1624,11 +1577,6 @@ type t_cuisine_sum_fields = FieldsType<
  */
 export type cuisine_sum_order_by = { id?: order_by | null };
 
-/**
- * @name cuisine_update_column
- * @type ENUM
- */
-type t_cuisine_update_column = EnumType<'id' | 'name'>;
 
 /**
  * @name cuisine_var_pop_fields
@@ -1801,13 +1749,6 @@ export type favorite_item_entity_bool_exp = {
   userId?: Int_comparison_exp | null;
 };
 
-/**
- * @name favorite_item_entity_constraint
- * @type ENUM
- */
-type t_favorite_item_entity_constraint = EnumType<
-  'PK_0c940960af1d3bffcb1ae7bc2c8'
->;
 
 /**
  * @name favorite_item_entity_inc_input
@@ -1931,13 +1872,6 @@ export type favorite_item_entity_pk_columns_input = {
   userId: number;
 };
 
-/**
- * @name favorite_item_entity_select_column
- * @type ENUM
- */
-type t_favorite_item_entity_select_column = EnumType<
-  'foodItemId' | 'isFavorite' | 'userId'
->;
 
 /**
  * @name favorite_item_entity_set_input
@@ -2037,13 +1971,6 @@ export type favorite_item_entity_sum_order_by = {
   userId?: order_by | null;
 };
 
-/**
- * @name favorite_item_entity_update_column
- * @type ENUM
- */
-type t_favorite_item_entity_update_column = EnumType<
-  'foodItemId' | 'isFavorite' | 'userId'
->;
 
 /**
  * @name favorite_item_entity_var_pop_fields
@@ -2321,11 +2248,6 @@ export type food_item_bool_exp = {
   turkey?: _food_contains_enum_comparison_exp | null;
 };
 
-/**
- * @name food_item_constraint
- * @type ENUM
- */
-type t_food_item_constraint = EnumType<'PK_057940b0225785ec693de562cf4'>;
 
 /**
  * @name food_item_inc_input
@@ -2545,11 +2467,6 @@ export type food_item_media_bool_exp = {
   type?: food_item_media_type_enum_comparison_exp | null;
 };
 
-/**
- * @name food_item_media_constraint
- * @type ENUM
- */
-type t_food_item_media_constraint = EnumType<'PK_605b244ba6ab5b71a7debce9006'>;
 
 /**
  * @name food_item_media_inc_input
@@ -2695,13 +2612,6 @@ export type food_item_media_order_by = {
  */
 export type food_item_media_pk_columns_input = { id: number };
 
-/**
- * @name food_item_media_select_column
- * @type ENUM
- */
-type t_food_item_media_select_column = EnumType<
-  'author_id' | 'caption' | 'food_item_id' | 'id' | 'src' | 'type'
->;
 
 /**
  * @name food_item_media_set_input
@@ -2837,13 +2747,6 @@ export type food_item_media_type_enum_comparison_exp = {
   _nin?: any[] | null;
 };
 
-/**
- * @name food_item_media_update_column
- * @type ENUM
- */
-type t_food_item_media_update_column = EnumType<
-  'author_id' | 'caption' | 'food_item_id' | 'id' | 'src' | 'type'
->;
 
 /**
  * @name food_item_media_var_pop_fields
@@ -3009,25 +2912,6 @@ export type food_item_order_by = {
  */
 export type food_item_pk_columns_input = { id: number };
 
-/**
- * @name food_item_select_column
- * @type ENUM
- */
-type t_food_item_select_column = EnumType<
-  | 'animal_products'
-  | 'beef'
-  | 'chicken'
-  | 'description'
-  | 'exotic'
-  | 'fish'
-  | 'gluten'
-  | 'id'
-  | 'is_game_ready'
-  | 'name'
-  | 'pork'
-  | 'shellfish'
-  | 'turkey'
->;
 
 /**
  * @name food_item_set_input
@@ -3121,25 +3005,6 @@ type t_food_item_sum_fields = FieldsType<
  */
 export type food_item_sum_order_by = { id?: order_by | null };
 
-/**
- * @name food_item_update_column
- * @type ENUM
- */
-type t_food_item_update_column = EnumType<
-  | 'animal_products'
-  | 'beef'
-  | 'chicken'
-  | 'description'
-  | 'exotic'
-  | 'fish'
-  | 'gluten'
-  | 'id'
-  | 'is_game_ready'
-  | 'name'
-  | 'pork'
-  | 'shellfish'
-  | 'turkey'
->;
 
 /**
  * @name food_item_var_pop_fields
@@ -3607,11 +3472,6 @@ export type game_choice_bool_exp = {
   status?: game_choice_status_enum_comparison_exp | null;
 };
 
-/**
- * @name game_choice_constraint
- * @type ENUM
- */
-type t_game_choice_constraint = EnumType<'PK_cb7ff566e4fe7f36d11f4e9c625'>;
 
 /**
  * @name game_choice_inc_input
@@ -3777,20 +3637,6 @@ export type game_choice_order_by = {
  */
 export type game_choice_pk_columns_input = { id: number };
 
-/**
- * @name game_choice_select_column
- * @type ENUM
- */
-type t_game_choice_select_column = EnumType<
-  | 'chosen_media_id'
-  | 'game_id'
-  | 'id'
-  | 'pick_rank'
-  | 'player_id'
-  | 'restaurant_id'
-  | 'restaurant_item_id'
-  | 'status'
->;
 
 /**
  * @name game_choice_set_input
@@ -3960,20 +3806,6 @@ export type game_choice_sum_order_by = {
   restaurant_item_id?: order_by | null;
 };
 
-/**
- * @name game_choice_update_column
- * @type ENUM
- */
-type t_game_choice_update_column = EnumType<
-  | 'chosen_media_id'
-  | 'game_id'
-  | 'id'
-  | 'pick_rank'
-  | 'player_id'
-  | 'restaurant_id'
-  | 'restaurant_item_id'
-  | 'status'
->;
 
 /**
  * @name game_choice_var_pop_fields
@@ -4071,11 +3903,6 @@ export type game_choice_variance_order_by = {
   restaurant_item_id?: order_by | null;
 };
 
-/**
- * @name game_constraint
- * @type ENUM
- */
-type t_game_constraint = EnumType<'PK_352a30652cd352f552fef73dec5'>;
 
 /**
  * @name game_cuisine
@@ -4208,11 +4035,6 @@ export type game_cuisine_bool_exp = {
   id?: Int_comparison_exp | null;
 };
 
-/**
- * @name game_cuisine_constraint
- * @type ENUM
- */
-type t_game_cuisine_constraint = EnumType<'PK_3db9fe08222c1f2bb0916eb2b03'>;
 
 /**
  * @name game_cuisine_inc_input
@@ -4342,11 +4164,6 @@ export type game_cuisine_order_by = {
  */
 export type game_cuisine_pk_columns_input = { id: number };
 
-/**
- * @name game_cuisine_select_column
- * @type ENUM
- */
-type t_game_cuisine_select_column = EnumType<'cuisine_id' | 'game_id' | 'id'>;
 
 /**
  * @name game_cuisine_set_input
@@ -4454,11 +4271,6 @@ export type game_cuisine_sum_order_by = {
   id?: order_by | null;
 };
 
-/**
- * @name game_cuisine_update_column
- * @type ENUM
- */
-type t_game_cuisine_update_column = EnumType<'cuisine_id' | 'game_id' | 'id'>;
 
 /**
  * @name game_cuisine_var_pop_fields
@@ -4931,11 +4743,6 @@ export type game_player_bool_exp = {
   user_id?: Int_comparison_exp | null;
 };
 
-/**
- * @name game_player_constraint
- * @type ENUM
- */
-type t_game_player_constraint = EnumType<'PK_67f6a08d68fa1e4c683736027eb'>;
 
 /**
  * @name game_player_inc_input
@@ -5067,11 +4874,6 @@ export type game_player_order_by = {
  */
 export type game_player_pk_columns_input = { id: number };
 
-/**
- * @name game_player_select_column
- * @type ENUM
- */
-type t_game_player_select_column = EnumType<'game_id' | 'id' | 'user_id'>;
 
 /**
  * @name game_player_set_input
@@ -5179,11 +4981,6 @@ export type game_player_sum_order_by = {
   user_id?: order_by | null;
 };
 
-/**
- * @name game_player_update_column
- * @type ENUM
- */
-type t_game_player_update_column = EnumType<'game_id' | 'id' | 'user_id'>;
 
 /**
  * @name game_player_var_pop_fields
@@ -5257,27 +5054,6 @@ export type game_player_variance_order_by = {
   user_id?: order_by | null;
 };
 
-/**
- * @name game_select_column
- * @type ENUM
- */
-type t_game_select_column = EnumType<
-  | 'address'
-  | 'cuisines_filter_mode'
-  | 'eat_time'
-  | 'game_creator_id'
-  | 'game_status'
-  | 'id'
-  | 'latitude'
-  | 'longitude'
-  | 'menus_filter'
-  | 'mode'
-  | 'prices'
-  | 'search_magnitude'
-  | 'time_created'
-  | 'unit_of_measure'
-  | 'winning_restaurant_id'
->;
 
 /**
  * @name game_set_input
@@ -5446,27 +5222,6 @@ export type game_unit_of_measure_enum_comparison_exp = {
   _nin?: any[] | null;
 };
 
-/**
- * @name game_update_column
- * @type ENUM
- */
-type t_game_update_column = EnumType<
-  | 'address'
-  | 'cuisines_filter_mode'
-  | 'eat_time'
-  | 'game_creator_id'
-  | 'game_status'
-  | 'id'
-  | 'latitude'
-  | 'longitude'
-  | 'menus_filter'
-  | 'mode'
-  | 'prices'
-  | 'search_magnitude'
-  | 'time_created'
-  | 'unit_of_measure'
-  | 'winning_restaurant_id'
->;
 
 /**
  * @name game_var_pop_fields
@@ -5692,11 +5447,6 @@ export type log_bool_exp = {
   payload?: String_comparison_exp | null;
 };
 
-/**
- * @name log_constraint
- * @type ENUM
- */
-type t_log_constraint = EnumType<'PK_350604cbdf991d5930d9e618fbd'>;
 
 /**
  * @name log_inc_input
@@ -5824,11 +5574,6 @@ export type log_order_by = {
  */
 export type log_pk_columns_input = { id: number };
 
-/**
- * @name log_select_column
- * @type ENUM
- */
-type t_log_select_column = EnumType<'date_created' | 'id' | 'name' | 'payload'>;
 
 /**
  * @name log_set_input
@@ -5913,11 +5658,6 @@ type t_log_sum_fields = FieldsType<
  */
 export type log_sum_order_by = { id?: order_by | null };
 
-/**
- * @name log_update_column
- * @type ENUM
- */
-type t_log_update_column = EnumType<'date_created' | 'id' | 'name' | 'payload'>;
 
 /**
  * @name log_var_pop_fields
@@ -6123,11 +5863,6 @@ export type media_author_bool_exp = {
   twitter?: String_comparison_exp | null;
 };
 
-/**
- * @name media_author_constraint
- * @type ENUM
- */
-type t_media_author_constraint = EnumType<'PK_439ea773c817c560dd83cf133d7'>;
 
 /**
  * @name media_author_inc_input
@@ -6275,19 +6010,6 @@ export type media_author_order_by = {
  */
 export type media_author_pk_columns_input = { id: number };
 
-/**
- * @name media_author_select_column
- * @type ENUM
- */
-type t_media_author_select_column = EnumType<
-  | 'email'
-  | 'facebook'
-  | 'id'
-  | 'instagram'
-  | 'name'
-  | 'personalWebsite'
-  | 'twitter'
->;
 
 /**
  * @name media_author_set_input
@@ -6375,19 +6097,6 @@ type t_media_author_sum_fields = FieldsType<
  */
 export type media_author_sum_order_by = { id?: order_by | null };
 
-/**
- * @name media_author_update_column
- * @type ENUM
- */
-type t_media_author_update_column = EnumType<
-  | 'email'
-  | 'facebook'
-  | 'id'
-  | 'instagram'
-  | 'name'
-  | 'personalWebsite'
-  | 'twitter'
->;
 
 /**
  * @name media_author_var_pop_fields
@@ -6582,11 +6291,6 @@ export type menu_bool_exp = {
   restaurant_items?: restaurant_item_bool_exp | null;
 };
 
-/**
- * @name menu_constraint
- * @type ENUM
- */
-type t_menu_constraint = EnumType<'PK_35b2a8f47d153ff7a41860cceeb'>;
 
 /**
  * @name menu_inc_input
@@ -6854,11 +6558,6 @@ export type menu_section_bool_exp = {
   restaurant_items?: restaurant_item_bool_exp | null;
 };
 
-/**
- * @name menu_section_constraint
- * @type ENUM
- */
-type t_menu_section_constraint = EnumType<'PK_bdb64b3aaf192ece146d3d232f7'>;
 
 /**
  * @name menu_section_inc_input
@@ -6984,13 +6683,6 @@ export type menu_section_order_by = {
  */
 export type menu_section_pk_columns_input = { id: number };
 
-/**
- * @name menu_section_select_column
- * @type ENUM
- */
-type t_menu_section_select_column = EnumType<
-  'id' | 'is_dessert' | 'is_drink' | 'is_game_ready' | 'is_kids' | 'name'
->;
 
 /**
  * @name menu_section_set_input
@@ -7077,13 +6769,6 @@ type t_menu_section_sum_fields = FieldsType<
  */
 export type menu_section_sum_order_by = { id?: order_by | null };
 
-/**
- * @name menu_section_update_column
- * @type ENUM
- */
-type t_menu_section_update_column = EnumType<
-  'id' | 'is_dessert' | 'is_drink' | 'is_game_ready' | 'is_kids' | 'name'
->;
 
 /**
  * @name menu_section_var_pop_fields
@@ -7139,11 +6824,6 @@ type t_menu_section_variance_fields = FieldsType<
  */
 export type menu_section_variance_order_by = { id?: order_by | null };
 
-/**
- * @name menu_select_column
- * @type ENUM
- */
-type t_menu_select_column = EnumType<'id' | 'is_game_ready' | 'name'>;
 
 /**
  * @name menu_set_input
@@ -7227,11 +6907,6 @@ type t_menu_sum_fields = FieldsType<
  */
 export type menu_sum_order_by = { id?: order_by | null };
 
-/**
- * @name menu_update_column
- * @type ENUM
- */
-type t_menu_update_column = EnumType<'id' | 'is_game_ready' | 'name'>;
 
 /**
  * @name menu_var_pop_fields
@@ -7399,11 +7074,6 @@ export type metric_bool_exp = {
   payload?: String_comparison_exp | null;
 };
 
-/**
- * @name metric_constraint
- * @type ENUM
- */
-type t_metric_constraint = EnumType<'PK_7d24c075ea2926dd32bd1c534ce'>;
 
 /**
  * @name metric_inc_input
@@ -7531,13 +7201,6 @@ export type metric_order_by = {
  */
 export type metric_pk_columns_input = { id: number };
 
-/**
- * @name metric_select_column
- * @type ENUM
- */
-type t_metric_select_column = EnumType<
-  'created_at' | 'id' | 'name' | 'payload'
->;
 
 /**
  * @name metric_set_input
@@ -7622,13 +7285,6 @@ type t_metric_sum_fields = FieldsType<
  */
 export type metric_sum_order_by = { id?: order_by | null };
 
-/**
- * @name metric_update_column
- * @type ENUM
- */
-type t_metric_update_column = EnumType<
-  'created_at' | 'id' | 'name' | 'payload'
->;
 
 /**
  * @name metric_var_pop_fields
@@ -9084,18 +8740,6 @@ type t_mutation_root = FieldsType<
   Extension<'mutation_root'>
 >;
 
-/**
- * @name order_by
- * @type ENUM
- */
-type t_order_by = EnumType<
-  | 'asc'
-  | 'asc_nulls_first'
-  | 'asc_nulls_last'
-  | 'desc'
-  | 'desc_nulls_first'
-  | 'desc_nulls_last'
->;
 
 /**
  * @name query_root
@@ -10296,11 +9940,6 @@ export type restaurant_chain_bool_exp = {
   restaurants?: restaurant_bool_exp | null;
 };
 
-/**
- * @name restaurant_chain_constraint
- * @type ENUM
- */
-type t_restaurant_chain_constraint = EnumType<'PK_d2a509385c30a3ea44dc032009e'>;
 
 /**
  * @name restaurant_chain_inc_input
@@ -10418,11 +10057,6 @@ export type restaurant_chain_order_by = {
  */
 export type restaurant_chain_pk_columns_input = { id: number };
 
-/**
- * @name restaurant_chain_select_column
- * @type ENUM
- */
-type t_restaurant_chain_select_column = EnumType<'id' | 'name'>;
 
 /**
  * @name restaurant_chain_set_input
@@ -10505,11 +10139,6 @@ type t_restaurant_chain_sum_fields = FieldsType<
  */
 export type restaurant_chain_sum_order_by = { id?: order_by | null };
 
-/**
- * @name restaurant_chain_update_column
- * @type ENUM
- */
-type t_restaurant_chain_update_column = EnumType<'id' | 'name'>;
 
 /**
  * @name restaurant_chain_var_pop_fields
@@ -10565,11 +10194,6 @@ type t_restaurant_chain_variance_fields = FieldsType<
  */
 export type restaurant_chain_variance_order_by = { id?: order_by | null };
 
-/**
- * @name restaurant_constraint
- * @type ENUM
- */
-type t_restaurant_constraint = EnumType<'PK_649e250d8b8165cb406d99aa30f'>;
 
 /**
  * @name restaurant_cuisine
@@ -10702,13 +10326,6 @@ export type restaurant_cuisine_bool_exp = {
   restaurant_id?: Int_comparison_exp | null;
 };
 
-/**
- * @name restaurant_cuisine_constraint
- * @type ENUM
- */
-type t_restaurant_cuisine_constraint = EnumType<
-  'PK_f9eb1abeb371c2225460d6cafad'
->;
 
 /**
  * @name restaurant_cuisine_inc_input
@@ -10838,13 +10455,6 @@ export type restaurant_cuisine_order_by = {
  */
 export type restaurant_cuisine_pk_columns_input = { id: number };
 
-/**
- * @name restaurant_cuisine_select_column
- * @type ENUM
- */
-type t_restaurant_cuisine_select_column = EnumType<
-  'cuisine_id' | 'id' | 'restaurant_id'
->;
 
 /**
  * @name restaurant_cuisine_set_input
@@ -10952,13 +10562,6 @@ export type restaurant_cuisine_sum_order_by = {
   restaurant_id?: order_by | null;
 };
 
-/**
- * @name restaurant_cuisine_update_column
- * @type ENUM
- */
-type t_restaurant_cuisine_update_column = EnumType<
-  'cuisine_id' | 'id' | 'restaurant_id'
->;
 
 /**
  * @name restaurant_cuisine_var_pop_fields
@@ -11258,11 +10861,6 @@ export type restaurant_item_bool_exp = {
   times_served?: _varchar_comparison_exp | null;
 };
 
-/**
- * @name restaurant_item_constraint
- * @type ENUM
- */
-type t_restaurant_item_constraint = EnumType<'PK_325a79252195bbf38d80dd9e0d6'>;
 
 /**
  * @name restaurant_item_inc_input
@@ -11423,20 +11021,6 @@ export type restaurant_item_order_by = {
  */
 export type restaurant_item_pk_columns_input = { id: number };
 
-/**
- * @name restaurant_item_select_column
- * @type ENUM
- */
-type t_restaurant_item_select_column = EnumType<
-  | 'food_item_id'
-  | 'id'
-  | 'is_game_ready'
-  | 'menu_id'
-  | 'menu_section_id'
-  | 'price'
-  | 'restaurant_id'
-  | 'times_served'
->;
 
 /**
  * @name restaurant_item_set_input
@@ -11573,20 +11157,6 @@ export type restaurant_item_sum_order_by = {
   restaurant_id?: order_by | null;
 };
 
-/**
- * @name restaurant_item_update_column
- * @type ENUM
- */
-type t_restaurant_item_update_column = EnumType<
-  | 'food_item_id'
-  | 'id'
-  | 'is_game_ready'
-  | 'menu_id'
-  | 'menu_section_id'
-  | 'price'
-  | 'restaurant_id'
-  | 'times_served'
->;
 
 /**
  * @name restaurant_item_var_pop_fields
@@ -11834,25 +11404,6 @@ export type restaurant_order_by = {
  */
 export type restaurant_pk_columns_input = { id: number };
 
-/**
- * @name restaurant_select_column
- * @type ENUM
- */
-type t_restaurant_select_column = EnumType<
-  | 'chain_id'
-  | 'city'
-  | 'id'
-  | 'is_game_ready'
-  | 'latitude'
-  | 'longitude'
-  | 'name'
-  | 'place_id'
-  | 'price'
-  | 'state'
-  | 'street_address'
-  | 'takeout_url'
-  | 'zip_code'
->;
 
 /**
  * @name restaurant_set_input
@@ -11986,25 +11537,6 @@ export type restaurant_sum_order_by = {
   price?: order_by | null;
 };
 
-/**
- * @name restaurant_update_column
- * @type ENUM
- */
-type t_restaurant_update_column = EnumType<
-  | 'chain_id'
-  | 'city'
-  | 'id'
-  | 'is_game_ready'
-  | 'latitude'
-  | 'longitude'
-  | 'name'
-  | 'place_id'
-  | 'price'
-  | 'state'
-  | 'street_address'
-  | 'takeout_url'
-  | 'zip_code'
->;
 
 /**
  * @name restaurant_var_pop_fields
@@ -12215,13 +11747,6 @@ export type restaurants_visited_entity_bool_exp = {
   restaurantId?: Int_comparison_exp | null;
 };
 
-/**
- * @name restaurants_visited_entity_constraint
- * @type ENUM
- */
-type t_restaurants_visited_entity_constraint = EnumType<
-  'PK_3ef088a9d0c887ec97a9b212b1b' | 'REL_56b99d348c4606c92bdf638804'
->;
 
 /**
  * @name restaurants_visited_entity_inc_input
@@ -12349,13 +11874,6 @@ export type restaurants_visited_entity_order_by = {
  */
 export type restaurants_visited_entity_pk_columns_input = { id: number };
 
-/**
- * @name restaurants_visited_entity_select_column
- * @type ENUM
- */
-type t_restaurants_visited_entity_select_column = EnumType<
-  'id' | 'numTimesEaten' | 'restaurantId'
->;
 
 /**
  * @name restaurants_visited_entity_set_input
@@ -12463,13 +11981,6 @@ export type restaurants_visited_entity_sum_order_by = {
   restaurantId?: order_by | null;
 };
 
-/**
- * @name restaurants_visited_entity_update_column
- * @type ENUM
- */
-type t_restaurants_visited_entity_update_column = EnumType<
-  'id' | 'numTimesEaten' | 'restaurantId'
->;
 
 /**
  * @name restaurants_visited_entity_var_pop_fields
@@ -13408,11 +12919,6 @@ export type test_table_bool_exp = {
   testcolumn?: String_comparison_exp | null;
 };
 
-/**
- * @name test_table_constraint
- * @type ENUM
- */
-type t_test_table_constraint = EnumType<'test_table_pkey'>;
 
 /**
  * @name test_table_insert_input
@@ -13522,11 +13028,6 @@ export type test_table_order_by = {
  */
 export type test_table_pk_columns_input = { id: any };
 
-/**
- * @name test_table_select_column
- * @type ENUM
- */
-type t_test_table_select_column = EnumType<'id' | 'testcolumn'>;
 
 /**
  * @name test_table_set_input
@@ -13537,11 +13038,6 @@ export type test_table_set_input = {
   testcolumn?: string | null;
 };
 
-/**
- * @name test_table_update_column
- * @type ENUM
- */
-type t_test_table_update_column = EnumType<'id' | 'testcolumn'>;
 
 /**
  * @name timestamp
@@ -13867,16 +13363,6 @@ export type user_bool_exp = {
   vegetarian?: Boolean_comparison_exp | null;
 };
 
-/**
- * @name user_constraint
- * @type ENUM
- */
-type t_user_constraint = EnumType<
-  | 'PK_cace4a159ff9f2512dd42373760'
-  | 'UQ_01eea41349b6c9275aec646eee0'
-  | 'UQ_78a916df40e02a9deb1c4b75edb'
-  | 'UQ_e12875dfb3b1d92d7d7c5377e22'
->;
 
 /**
  * @name user_device
@@ -14005,13 +13491,6 @@ export type user_device_bool_exp = {
   user_id?: Int_comparison_exp | null;
 };
 
-/**
- * @name user_device_constraint
- * @type ENUM
- */
-type t_user_device_constraint = EnumType<
-  'PK_0232591a0b48e1eb92f3ec5d0d1' | 'UQ_16dca93ee85ad8b976fdc6cb1a0'
->;
 
 /**
  * @name user_device_inc_input
@@ -14146,13 +13625,6 @@ export type user_device_order_by = {
  */
 export type user_device_pk_columns_input = { id: number };
 
-/**
- * @name user_device_select_column
- * @type ENUM
- */
-type t_user_device_select_column = EnumType<
-  'active' | 'createdOn' | 'device_token' | 'id' | 'user_id'
->;
 
 /**
  * @name user_device_set_input
@@ -14254,13 +13726,6 @@ export type user_device_sum_order_by = {
   user_id?: order_by | null;
 };
 
-/**
- * @name user_device_update_column
- * @type ENUM
- */
-type t_user_device_update_column = EnumType<
-  'active' | 'createdOn' | 'device_token' | 'id' | 'user_id'
->;
 
 /**
  * @name user_device_var_pop_fields
@@ -14541,34 +14006,6 @@ export type user_order_by = {
  */
 export type user_pk_columns_input = { id: number };
 
-/**
- * @name user_select_column
- * @type ENUM
- */
-type t_user_select_column = EnumType<
-  | 'active'
-  | 'animal_products'
-  | 'beef'
-  | 'chicken'
-  | 'created_at'
-  | 'diet'
-  | 'email'
-  | 'exotic'
-  | 'first_name'
-  | 'fish'
-  | 'gluten'
-  | 'id'
-  | 'last_name'
-  | 'password'
-  | 'phone_number'
-  | 'pork'
-  | 'shellfish'
-  | 'turkey'
-  | 'username'
-  | 'vegan'
-  | 'vegetables'
-  | 'vegetarian'
->;
 
 /**
  * @name user_set_input
@@ -14671,34 +14108,6 @@ type t_user_sum_fields = FieldsType<
  */
 export type user_sum_order_by = { id?: order_by | null };
 
-/**
- * @name user_update_column
- * @type ENUM
- */
-type t_user_update_column = EnumType<
-  | 'active'
-  | 'animal_products'
-  | 'beef'
-  | 'chicken'
-  | 'created_at'
-  | 'diet'
-  | 'email'
-  | 'exotic'
-  | 'first_name'
-  | 'fish'
-  | 'gluten'
-  | 'id'
-  | 'last_name'
-  | 'password'
-  | 'phone_number'
-  | 'pork'
-  | 'shellfish'
-  | 'turkey'
-  | 'username'
-  | 'vegan'
-  | 'vegetables'
-  | 'vegetarian'
->;
 
 /**
  * @name user_var_pop_fields
