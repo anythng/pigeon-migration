@@ -1,4 +1,5 @@
 import { execute } from '@utils';
+import { Mutation_RootRegisterUserArgs as Args } from '@utils/schema';
 
 const QUERY = `
   mutation RegisterUser(
@@ -20,19 +21,15 @@ const QUERY = `
   }
 `;
 
-export interface Args {
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+export { Args };
 
 export interface Data {
   insert_user_one: {
     id: number;
   };
 }
+
+export { Args as RegisterUserArgs, Data as RegisterUserData };
 
 export const registerUser = async (newUser: Args): Promise<number> | never => {
   const data = await execute<Data, Args>(QUERY, newUser);

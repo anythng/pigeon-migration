@@ -4,11 +4,11 @@ import {
   HttpStatus,
   trimObjectString,
 } from '@utils';
+import { LoginResponse } from '@utils/schema';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
 import { registerUser, RegisterUserArgs } from './gql';
-import { LoginResponse } from '../types';
 
 const RegisterUserHandler = async (
   input: RegisterUserArgs,

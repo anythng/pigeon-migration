@@ -1,17 +1,15 @@
 import { generateJwt, ActionHandler, HttpStatus, execute } from '@utils';
+import {
+  User,
+  LoginResponse,
+  Mutation_RootLoginArgs as LoginArgs,
+} from '@utils/schema';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
-
-import { LoginResponse } from './types';
 
 export const router = Router();
 
 const UNAUTHORIZED = HttpStatus.UNAUTHORIZED;
-
-interface LoginArgs {
-  identifier: string;
-  password: string;
-}
 
 const CREDENTIALS_QUERY = `
   query GetCredentials($identifier: String!) {
@@ -35,10 +33,7 @@ interface GetCredentialsData {
   user: Credentials[];
 }
 
-interface Credentials {
-  id: number;
-  password: string;
-}
+type Credentials = Pick<User, 'id' | 'password'>;
 
 const getCredentials = async (
   identifier: string,
