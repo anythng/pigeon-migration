@@ -1,4 +1,4 @@
-import { generateJwt, ActionHandler, query, user, HttpStatus } from '@utils';
+import { generateJwt, ActionHandler, HttpStatus, execute } from '@utils';
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
@@ -13,28 +13,49 @@ interface LoginArgs {
   password: string;
 }
 
-const getCredentials = async (identifier: string): Promise<user> | never => {
-  const users = query.user({
-    where: {
+const CREDENTIALS_QUERY = `
+  query GetCredentials($identifier: String!) {
+    user(where: {
       _or: [
-        {
-          username: { _eq: identifier },
-        },
-        {
-          email: { _eq: identifier },
-        },
-      ],
-    },
-  });
+        { username: { _eq: $identifier} },
+        { email: { _eq: $identifier } },
+      ]
+    }) {
+      id
+      password
+    }
+  }
+`;
+
+interface GetCredentialsArgs {
+  identifier: string;
+}
+
+interface GetCredentialsData {
+  user: Credentials[];
+}
+
+interface Credentials {
+  id: number;
+  password: string;
+}
+
+const getCredentials = async (
+  identifier: string,
+): Promise<Credentials> | never => {
+  const result: GetCredentialsData = await execute<
+    GetCredentialsData,
+    GetCredentialsArgs
+  >(CREDENTIALS_QUERY, { identifier });
+  const { user } = result;
 
   // TODO: Handle fetching error
 
-  if (users.length !== 1) {
+  if (user.length !== 1) {
     throw new Error('Incorrect credentials');
   }
 
-  console.log(users);
-  return users[0];
+  return user[0];
 };
 
 const post: ActionHandler<LoginResponse, LoginArgs> = async (
@@ -42,20 +63,17 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   res,
 ): Promise<Response<LoginResponse>> => {
   const { identifier, password } = req.body.input;
-  console.log(identifier, password);
 
-  let creds: user;
+  let creds: Credentials;
 
   try {
     creds = await getCredentials(identifier);
-    console.log(creds);
   } catch (e) {
     return res.status(UNAUTHORIZED).json({
       message: e.message,
     });
   }
 
-  console.log(password, creds.password);
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
   if (!isPasswordCorrect) {
