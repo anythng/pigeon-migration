@@ -11,7 +11,7 @@ export const endpoint = 'http://192.168.99.100:8080/v1/graphql';
 export const execute = async <Data = unknown, Vars = unknown>(
   query: string,
   variables: Vars,
-): Promise<ExecuteData<Data>> => {
+): Promise<ExecuteData<Data>> | never => {
   const token = generateAdminJwt();
   const fetchResponse = await fetch(endpoint, {
     method: 'POST',
@@ -26,5 +26,10 @@ export const execute = async <Data = unknown, Vars = unknown>(
 
   const data = await fetchResponse.json();
   console.log('DEBUG:', data);
+
+  if (data.errors) {
+    throw new Error(JSON.stringify(data));
+  }
+
   return data.data || data;
 };

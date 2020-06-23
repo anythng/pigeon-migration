@@ -34,9 +34,5 @@ export { Args as RegisterUserArgs, Data as RegisterUserData };
 export const registerUser = async (newUser: Args): Promise<number> | never => {
   const data = await execute<Data, Args>(QUERY, newUser);
 
-  if (data.errors) {
-    throw new Error(JSON.stringify(data));
-  }
-
   return data.insert_user_one.id;
 };
