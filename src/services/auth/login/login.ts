@@ -6,10 +6,8 @@ import {
 import bcrypt from 'bcrypt';
 import { Router, Response } from 'express';
 
+import errors from './errors';
 import { Credentials, getCredentials } from './gql';
-
-export const router = Router();
-export const route = '/login';
 
 const post: ActionHandler<LoginResponse, LoginArgs> = async (
   req,
@@ -36,8 +34,9 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
   const isPasswordCorrect = await bcrypt.compare(password, creds.password);
 
   if (!isPasswordCorrect) {
-    return res.status(401).json({
-      message: 'Incorrect password',
+    const { message, status } = errors.INVALID_PW;
+    return res.status(status).json({
+      message,
     });
   }
 
@@ -46,6 +45,9 @@ const post: ActionHandler<LoginResponse, LoginArgs> = async (
     accessToken: generateJwt(String(creds.id), 'user'),
   });
 };
+
+export const router = Router();
+export const route = '/login';
 
 router
   .route(route)

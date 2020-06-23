@@ -45,4 +45,17 @@ describe('Login handler', (): void => {
     expect(res.status).toBe(expected.status);
     expect(res.body).toHaveProperty('message', expected.message);
   });
+
+  it('should throw error given invalid password', async () => {
+    const data: LoginUserData = {
+      user: [{ id: 1, password: 'wrongpassword' }],
+    };
+    fetch.mockResponseOnce(JSON.stringify({ data }));
+
+    const res = await app.post({ input });
+
+    const expected = errors.INVALID_PW;
+    expect(res.status).toBe(expected.status);
+    expect(res.body).toHaveProperty('message', expected.message);
+  });
 });
