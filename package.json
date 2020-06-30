@@ -13,7 +13,8 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "start": "yarn run shell",
-    "test": "jest"
+    "test": "jest",
+    "commit": "git-cz"
   },
   "engines": {
     "node": "10"
