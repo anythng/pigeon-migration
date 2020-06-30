@@ -10,7 +10,6 @@ Install `nodejs10` using `n` [via the instructions here](https://github.com/tj/n
 
 ### Package Manager
 This application uses `yarn`.
-
 If you don't have yarn, [install it via the instructions here.](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
 
 ### Project Setup
@@ -21,22 +20,24 @@ Running the project locally and deploying requires `firebase-tools`. This means 
 
 Install [firebase-tools using these instructions.](https://firebase.google.com/docs/cli)
 
-After installing, you should be able to login using `firebase-login`. Be sure to login to the account with the right permissions to the firebase project.
+After installing, you should be able to login using:
+```firebase-login```
+Be sure to login to the account with the right permissions to the firebase project.
 
 #### Installing dependencies
 Run the following commands:
-
 ```
 yarn
 ```
 
-
 ## Running the project
-
 In debug mode:
 ```
-npm run serve:dev
+yarn serve:dev
 ```
+
+## Contributing
+We have a specific contribution workflow. To read more, follow [this link to Confluence](https://anythng.atlassian.net/wiki/spaces/E/pages/21004289/pigeon-migration%2Bname%2Bpending%2Bcommit%2Bworkflow).
 
 ## VSCode Prettier/Eslint Configuration for automatic code formatting & error checking
 
