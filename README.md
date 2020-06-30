@@ -33,7 +33,7 @@ yarn
 ## Running the project
 In debug mode:
 ```
-yarn serve:dev
+yarn serve
 ```
 
 ## Contributing

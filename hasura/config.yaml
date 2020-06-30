@@ -1,6 +1,6 @@
 version: 2
-endpoint: http://192.168.0.20:8080
-admin_secret: myadminsecretkey
+endpoint: https://staging-eaw3qk5meq-uc.a.run.app/
+admin_secret: stagingadminsecret
 metadata_directory: metadata
 actions:
   kind: synchronous
