@@ -1,12 +1,9 @@
-name: Integrate
+name: Deploy-Staging
 
 on:
   push:
-    branches: 
-      - '*'
-      - '!master'
-  pull_request:
-    branches: '*'
+    branches:
+      - 'develop'
 
 jobs:
   integrate:
@@ -17,5 +14,5 @@ jobs:
         with:
           node-version: 10.18.1
       - run: yarn --frozen-lockfile
-      - run: yarn test
       - run: yarn build
+      - run: yarn deploy:staging:all

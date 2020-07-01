@@ -1,7 +1,6 @@
 version: 2
-endpoint: https://staging-eaw3qk5meq-uc.a.run.app/
-admin_secret: stagingadminsecret
 metadata_directory: metadata
+migrations_directory: migrations
 actions:
+  handler_webhook_baseurl: '{{ ACTION_BASE_ENDPOINT }}'
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:5003/services
