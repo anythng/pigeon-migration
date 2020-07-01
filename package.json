@@ -11,9 +11,20 @@
     "serve": "yarn run build && firebase emulators:start --only functions",
     "shell": "yarn run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions",
+    "deploy:local:hasura": "./scripts/deployments/local/hasura.sh",
+    "deploy:staging:all": "yarn deploy:staging:functions && yarn deploy:staging:hasura",
+    "deploy:staging:functions": "firebase use staging && yarn deploy",
+    "deploy:staging:hasura": "./scripts/deployments/staging/hasura.sh",
     "logs": "firebase functions:log",
     "start": "yarn run shell",
-    "test": "jest"
+    "test": "jest",
+    "commit": "git-cz",
+    "console:local": "hasura console --project hasura",
+    "conlo": "yarn console:local",
+    "console:staging": "hasura console --project hasura --envfile .staging.env",
+    "const": "yarn console:staging",
+    "console:prod": "hasura console --project hasura/prod",
+    "conpr": "yarn console:prod"
   },
   "engines": {
     "node": "10"
@@ -52,6 +63,7 @@
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-prettier": "^3.1.4",
     "firebase-functions-test": "^0.2.0",
+    "hasura-cli": "^1.2.2",
     "husky": ">=4",
     "jest": "^26.0.1",
     "jest-fetch-mock": "^3.0.3",

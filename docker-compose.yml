@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres:
+    build: ./postgres
+    container_name: any-psql
+    ports:
+      - 5432:5432
+
+  hasura:
+    image: hasura/graphql-engine:latest
+    container_name: any-has
+    ports:
+      - 8080:8080
+    env_file:
+      - hasura/engine-local.env
+    depends_on:
+      - postgres
+    restart: on-failure
