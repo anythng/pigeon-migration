@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "anythng-a5964"
+    "prod": "anythng-a5964",
+    "staging": "staging-c0035"
   }
 }
+

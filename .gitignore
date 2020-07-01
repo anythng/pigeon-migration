@@ -1,20 +1,22 @@
 ## Compiled JavaScript files
 lib/
-
 node_modules/
 
 # Certs
 *.pem
 
-# SQL Backups
-*.sql
-*.mssql
-
 # Environment Variables
-.env
 app.yaml
 staging.yaml
 anythng*.json
+
+# User-dependent config
+.runtimeconfig.json
+hasura/.env
+hasura/.staging.env
+hasura/.prod.env
+hasura/engine-local.env
+hasura/config.yaml
 
 # Logs
 logs
