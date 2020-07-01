@@ -25,7 +25,12 @@ export class ExecuteError extends Error {
   }
 }
 
-export const endpoint = 'http://192.168.99.100:8080/v1/graphql';
+let endpoint = 'http://localhost:8080/v1/graphql';
+const projectId = process.env.GCLOUD_PROJECT || '';
+
+if (projectId.includes('staging')) {
+  endpoint = 'https://staging-ilmcsmiuba-uc.a.run.app/v1/graphql';
+}
 
 // TODO: Make a long standing JWT
 export const execute = async <Data = { data: unknown }, Vars = unknown>(

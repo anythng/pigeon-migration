@@ -1,19 +1,25 @@
 actions:
+- name: actionName
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}'
 - name: Login
   definition:
     kind: synchronous
-    handler: http://192.168.0.20:5003/anythng-a5964/us-central1/services/auth/login
+    handler: '{{ACTION_BASE_ENDPOINT}}/services/auth/login'
   permissions:
   - role: anonymous
 - name: RegisterUser
   definition:
     kind: synchronous
-    handler: http://192.168.0.20:5003/anythng-a5964/us-central1/services/auth/register
+    handler: '{{ACTION_BASE_ENDPOINT}}/services/auth/register'
   permissions:
   - role: anonymous
 custom_types:
   enums: []
-  input_objects: []
+  input_objects:
+  - name: SampleInput
   objects:
   - name: LoginResponse
+  - name: SampleOutput
   scalars: []

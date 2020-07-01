@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v2.1.0
         with:
           node-version: 10.18.1
-      - run: yarn --frozen-lockfile
-      - run: yarn test
-      - run: yarn build
+      - run: yarn --frozen-lockfile --verbose
+      - run: yarn test --verbose
+      - run: yarn build --verbose
+
