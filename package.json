@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "build:watch": "rm -rf lib && tsc -w",
+    "build:watch": "rm -rf lib && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "generate": "graphql-codegen --config codegen.yml",
     "lint": "eslint .",
-    "serve:dev": "yarn run build:watch | firebase serve --only functions",
+    "serve:dev": "yarn build:watch && firebase serve --only functions",
     "serve": "yarn run build && firebase emulators:start --only functions",
     "shell": "yarn run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions",
@@ -25,6 +25,7 @@
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.7.0",
     "graphql": "^15.1.0",
+    "hasura-cli": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "node-fetch": "2.6.0"
