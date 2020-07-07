@@ -13,10 +13,8 @@ anythng*.json
 # User-dependent config
 .runtimeconfig.json
 hasura/.env
-hasura/.staging.env
 hasura/.prod.env
 hasura/engine-local.env
-hasura/config.yaml
 
 # Logs
 logs

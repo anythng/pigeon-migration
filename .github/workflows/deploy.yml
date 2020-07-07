@@ -13,8 +13,9 @@ jobs:
       - uses: actions/setup-node@v2.1.0
         with:
           node-version: 10.18.1
-      - run: yarn --frozen-lockfile --verbose
-      - run: yarn global add firebase-tools --verbose
+      - run: yarn --frozen-lockfile
+      - run: yarn global add firebase-tools
       - env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: yarn deploy:staging:all --verbose
+          HASURA_STAGING_ADMIN_SECRET: ${{ secrets.HASURA_STAGING_ADMIN_SECRET }}
+        run: yarn deploy:staging:hasura --verbose
